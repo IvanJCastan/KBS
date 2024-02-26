@@ -1,0 +1,738 @@
+ CLIPS (6.4.1 4/8/23)
+CLIPS> (reset)
+CLIPS> (clear)
+CLIPS> (facts)
+CLIPS> (initial-fact)
+
+[EXPRNPSR3] Missing function declaration for 'initial-fact'.
+CLIPS> (initial-fact)
+
+[EXPRNPSR3] Missing function declaration for 'initial-fact'.
+CLIPS> (rules)
+CLIPS> (assert(perso sue))
+<Fact-1>
+CLIPS> (assert(person sue))
+<Fact-2>
+CLIPS> (reset)
+CLIPS> (clear)
+CLIPS> (assert(person sue))
+<Fact-1>
+CLIPS> (initial-fact)
+
+[EXPRNPSR3] Missing function declaration for 'initial-fact'.
+CLIPS> (facts)
+f-1     (person sue)
+For a total of 1 fact.
+CLIPS> (assert(person fred 32))
+<Fact-2>
+CLIPS> (facts)
+f-1     (person sue)
+f-2     (person fred 32)
+For a total of 2 facts.
+CLIPS> (assert(sintom a))
+<Fact-3>
+CLIPS> (facts)
+f-1     (person sue)
+f-2     (person fred 32)
+f-3     (sintom a)
+For a total of 3 facts.
+CLIPS> (assert(computer apple macbook 32000 32GB))
+<Fact-4>
+CLIPS> (defrule r1 (sintom ?sintom) => (printout t ?sintom clrf))
+CLIPS> (rules)
+r1
+For a total of 1 defrule.
+CLIPS> (run)
+aclrfCLIPS> (defrule r2 (sintom ?sintom) => (printout t ?sintom crlf))
+CLIPS> (rules)
+r1
+r2
+For a total of 2 defrules.
+CLIPS> (run)
+a
+CLIPS> (assert(fail e))
+<Fact-5>
+CLIPS> (assert(fail f))
+<Fact-6>
+CLIPS> (assert(fail display))
+<Fact-7>
+CLIPS> (defrule fails (fail ?f) => (printout t "fail: " ?f crlf))
+CLIPS> (rules)
+r1
+r2
+fails
+For a total of 3 defrules.
+CLIPS> (run)
+fail: display
+fail: f
+fail: e
+CLIPS> (facts)
+f-1     (person sue)
+f-2     (person fred 32)
+f-3     (sintom a)
+f-4     (computer apple macbook 32000 32GB)
+f-5     (fail e)
+f-6     (fail f)
+f-7     (fail display)
+For a total of 7 facts.
+CLIPS> (retract 1)
+CLIPS> (facts)
+f-2     (person fred 32)
+f-3     (sintom a)
+f-4     (computer apple macbook 32000 32GB)
+f-5     (fail e)
+f-6     (fail f)
+f-7     (fail display)
+For a total of 6 facts.
+CLIPS> (assert(asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar))
+<Fact-8>
+CLIPS> (assert(alergia irritacion inflamacion enrojecimiento ojosVidriosos))
+<Fact-9>
+CLIPS> (assert(gripa dolorDeCabeza tos debilidad temperaturaElevada))
+<Fact-10>
+CLIPS> (assert(cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga))
+<Fact-11>
+CLIPS> (assert(bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar))
+<Fact-12>
+CLIPS> (assert(infeccion dolor inflamacion temperaturaElevada enrojecimiento))
+<Fact-13>
+CLIPS> (defrule prueba(?s ?s1 ?s2 ?s3 ?s4) => (printout t ?s1 ?s2 ?s3 ?s4 crlf))
+
+[PRNTUTIL2] Syntax Error:  Check appropriate syntax for the first field of a pattern.
+
+ERROR:
+(defrule MAIN::prueba
+   (?s
+CLIPS> (defrule prueba(asma ?s1 ?s2 ?s3 ?s4) => (printout t ?s1 ?s2 ?s3 ?s4 crlf))
+CLIPS> (run)
+dolorDePechotosfaltaDeAiresibilanciaAlExhalar
+CLIPS> (defrule alergia(alergia ?s1 ?s2 ?s3 ?s4) => (printout t ?s1 crlf ?s2 crlf ?s3 crlf ?s4 crlf))
+CLIPS> (run)
+irritacion
+inflamacion
+enrojecimiento
+ojosVidriosos
+CLIPS> (defrule alergia2(alergia ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad:" ?s crlf "Sintoma 1: "?s1 crlf "Sintoma 2: "?s2 crlf "Signo 1: "?s3 crlf "Signo 2: "?s4 crlf))
+
+[PRCCODE3] Undefined variable ?s referenced in RHS of defrule.
+
+ERROR:
+(defrule MAIN::alergia2
+   (alergia ?s1 ?s2 ?s3 ?s4)
+   =>
+   (printout t "Enfermedad:" ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (defrule alergia2(alergia ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad:"  ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+
+[PRCCODE3] Undefined variable ?s referenced in RHS of defrule.
+
+ERROR:
+(defrule MAIN::alergia2
+   (alergia ?s1 ?s2 ?s3 ?s4)
+   =>
+   (printout t "Enfermedad:" ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (defrule alergia2(alergia ?s ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad:"  ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (run)
+CLIPS> (defrule alergia3(alergia ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Alergia" crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (run)
+Enfermedad: Alergia
+Sintoma 1: irritacion
+Sintoma 2: inflamacion
+Signo 1: enrojecimiento
+Signo 2: ojosVidriosos
+CLIPS> (assert(enfermedad piedras dolorVejiga dolorAlOrinar sangradoEnOrina fatiga))
+<Fact-14>
+CLIPS> (defrule enfermedades(endermedad ?s ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad:"  ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (run)
+CLIPS> (defrule enfermedades1(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad:" ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (run)
+Enfermedad:piedras
+Sintoma 1: dolorVejiga
+Sintoma 2: dolorAlOrinar
+Signo 1: sangradoEnOrina
+Signo 2: fatiga
+CLIPS> (assert(enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar))
+<Fact-15>
+CLIPS> (assert(enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos))
+<Fact-16>
+CLIPS> (assert(enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada))
+<Fact-17>
+CLIPS> (assert(enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga))
+<Fact-18>
+CLIPS> (assert(enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar))
+<Fact-19>
+CLIPS> (assert(enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento))
+<Fact-20>
+CLIPS> (defrule enfermedades2(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad:" ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf crlf))
+CLIPS> (run)
+Enfermedad:piedras
+Sintoma 1: dolorVejiga
+Sintoma 2: dolorAlOrinar
+Signo 1: sangradoEnOrina
+Signo 2: fatiga
+
+Enfermedad:asma
+Sintoma 1: dolorDePecho
+Sintoma 2: tos
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:alergia
+Sintoma 1: irritacion
+Sintoma 2: inflamacion
+Signo 1: enrojecimiento
+Signo 2: ojosVidriosos
+
+Enfermedad:gripa
+Sintoma 1: dolorDeCabeza
+Sintoma 2: tos
+Signo 1: debilidad
+Signo 2: temperaturaElevada
+
+Enfermedad:cancer
+Sintoma 1: bultoEnCuerpo
+Sintoma 2: cambioEnPigmentacion
+Signo 1: debilidad
+Signo 2: fatiga
+
+Enfermedad:bronquitis
+Sintoma 1: tos
+Sintoma 2: mucosidad
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+Enfermedad:bronquitis
+Sintoma 1: tos
+Sintoma 2: mucosidad
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+Enfermedad:cancer
+Sintoma 1: bultoEnCuerpo
+Sintoma 2: cambioEnPigmentacion
+Signo 1: debilidad
+Signo 2: fatiga
+Enfermedad:gripa
+Sintoma 1: dolorDeCabeza
+Sintoma 2: tos
+Signo 1: debilidad
+Signo 2: temperaturaElevada
+Enfermedad:alergia
+Sintoma 1: irritacion
+Sintoma 2: inflamacion
+Signo 1: enrojecimiento
+Signo 2: ojosVidriosos
+Enfermedad:asma
+Sintoma 1: dolorDePecho
+Sintoma 2: tos
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+CLIPS> (defrule enfermedades3(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad:" ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf crlf))
+CLIPS> (run)
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+Enfermedad:bronquitis
+Sintoma 1: tos
+Sintoma 2: mucosidad
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:cancer
+Sintoma 1: bultoEnCuerpo
+Sintoma 2: cambioEnPigmentacion
+Signo 1: debilidad
+Signo 2: fatiga
+
+Enfermedad:gripa
+Sintoma 1: dolorDeCabeza
+Sintoma 2: tos
+Signo 1: debilidad
+Signo 2: temperaturaElevada
+
+Enfermedad:alergia
+Sintoma 1: irritacion
+Sintoma 2: inflamacion
+Signo 1: enrojecimiento
+Signo 2: ojosVidriosos
+
+Enfermedad:asma
+Sintoma 1: dolorDePecho
+Sintoma 2: tos
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:piedras
+Sintoma 1: dolorVejiga
+Sintoma 2: dolorAlOrinar
+Signo 1: sangradoEnOrina
+Signo 2: fatiga
+
+CLIPS> (defrule eliminarEnfermedades(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (extract))
+
+[EXPRNPSR3] Missing function declaration for 'extract'.
+
+ERROR:
+(defrule MAIN::eliminarEnfermedades
+   (enfermedad ?s ?s1 ?s2 ?s3 ?s4)
+   =>
+   (extract
+CLIPS> (defrule eliminarEnfermedades(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (extract enfermedad))
+
+[EXPRNPSR3] Missing function declaration for 'extract'.
+
+ERROR:
+(defrule MAIN::eliminarEnfermedades
+   (enfermedad ?s ?s1 ?s2 ?s3 ?s4)
+   =>
+   (extract
+CLIPS> (defrule eliminarAsma(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (extract 15))
+
+[EXPRNPSR3] Missing function declaration for 'extract'.
+
+ERROR:
+(defrule MAIN::eliminarAsma
+   (enfermedad ?s ?s1 ?s2 ?s3 ?s4)
+   =>
+   (extract
+CLIPS> (defrule eliminarAsma(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (retract enfermedad))
+CLIPS> (facts)
+f-2     (person fred 32)
+f-3     (sintom a)
+f-4     (computer apple macbook 32000 32GB)
+f-5     (fail e)
+f-6     (fail f)
+f-7     (fail display)
+f-8     (asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+f-9     (alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-10    (gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-11    (cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-12    (bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-13    (infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+f-14    (enfermedad piedras dolorVejiga dolorAlOrinar sangradoEnOrina fatiga)
+f-15    (enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+f-16    (enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-17    (enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-18    (enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-19    (enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-20    (enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+For a total of 19 facts.
+CLIPS> (run)
+[ARGACCES2] Function 'retract' expected argument #1 to be of type fact-address, fact-index, or the symbol *.
+[PRCCODE4] Execution halted during the actions of defrule 'eliminarAsma'.
+CLIPS> (defrule eliminarEnfermedad(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (retract *))
+CLIPS> (facts)
+f-2     (person fred 32)
+f-3     (sintom a)
+f-4     (computer apple macbook 32000 32GB)
+f-5     (fail e)
+f-6     (fail f)
+f-7     (fail display)
+f-8     (asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+f-9     (alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-10    (gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-11    (cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-12    (bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-13    (infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+f-14    (enfermedad piedras dolorVejiga dolorAlOrinar sangradoEnOrina fatiga)
+f-15    (enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+f-16    (enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-17    (enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-18    (enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-19    (enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-20    (enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+For a total of 19 facts.
+CLIPS> (run)
+CLIPS> (facts)
+CLIPS> (assert(enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar))
+<Fact-21>
+CLIPS> (assert(enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos))
+<Fact-22>
+CLIPS> (assert(enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada))
+<Fact-23>
+CLIPS> (assert(enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga))
+<Fact-24>
+CLIPS> (assert(enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar))
+<Fact-25>
+CLIPS> (assert(enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento))
+<Fact-26>
+CLIPS> (facts)
+f-21    (enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+f-22    (enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-23    (enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-24    (enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-25    (enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-26    (enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+For a total of 6 facts.
+CLIPS> (defrule enfermedades0(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad:" ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf crlf))
+CLIPS> (run)
+Enfermedad:asma
+Sintoma 1: dolorDePecho
+Sintoma 2: tos
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:alergia
+Sintoma 1: irritacion
+Sintoma 2: inflamacion
+Signo 1: enrojecimiento
+Signo 2: ojosVidriosos
+
+Enfermedad:gripa
+Sintoma 1: dolorDeCabeza
+Sintoma 2: tos
+Signo 1: debilidad
+Signo 2: temperaturaElevada
+
+Enfermedad:cancer
+Sintoma 1: bultoEnCuerpo
+Sintoma 2: cambioEnPigmentacion
+Signo 1: debilidad
+Signo 2: fatiga
+
+Enfermedad:bronquitis
+Sintoma 1: tos
+Sintoma 2: mucosidad
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+[ARGACCES2] Function 'retract' expected argument #1 to be of type fact-address, fact-index, or the symbol *.
+[PRCCODE4] Execution halted during the actions of defrule 'eliminarAsma'.
+
+
+
+
+CLIPS> (facts)
+f-21    (enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+f-22    (enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-23    (enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-24    (enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-25    (enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-26    (enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+For a total of 6 facts.
+
+
+CLIPS> (defrule enfermedades4(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad:" ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf crlf))
+CLIPS> (run)
+
+
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+Enfermedad:bronquitis
+Sintoma 1: tos
+Sintoma 2: mucosidad
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:cancer
+Sintoma 1: bultoEnCuerpo
+Sintoma 2: cambioEnPigmentacion
+Signo 1: debilidad
+Signo 2: fatiga
+
+Enfermedad:gripa
+Sintoma 1: dolorDeCabeza
+Sintoma 2: tos
+Signo 1: debilidad
+Signo 2: temperaturaElevada
+
+Enfermedad:alergia
+Sintoma 1: irritacion
+Sintoma 2: inflamacion
+Signo 1: enrojecimiento
+Signo 2: ojosVidriosos
+
+Enfermedad:asma
+Sintoma 1: dolorDePecho
+Sintoma 2: tos
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+CLIPS> (defrule eliminarEnfermedad2 ?f <- (enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+CLIPS> (assert(comida chilaquiles))
+<Fact-27>
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+For a total of 1 fact.
+CLIPS> (run)
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+For a total of 1 fact.
+CLIPS> (rules)
+r1
+r2
+fails
+prueba
+alergia
+alergia2
+alergia3
+enfermedades
+enfermedades1
+enfermedades2
+enfermedades3
+eliminarAsma
+eliminarEnfermedad
+enfermedades0
+enfermedades4
+eliminarEnfermedad2
+For a total of 16 defrules.
+CLIPS> (undefrule *)
+CLIPS> (rules)
+CLIPS> (defrule enfermedades(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad:" ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf crlf))
+CLIPS> (rules)
+enfermedades
+For a total of 1 defrule.
+CLIPS> (defrule eliminarEnfermedad ?f <- (enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+CLIPS> (rules)
+enfermedades
+eliminarEnfermedad
+For a total of 2 defrules.
+CLIPS> (assert(enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos))
+<Fact-28>
+CLIPS> (assert(enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada))
+<Fact-29>
+CLIPS> (assert(enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga))
+<Fact-30>
+CLIPS> (assert(enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar))
+<Fact-31>
+CLIPS> (assert(enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento))
+<Fact-32>
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+f-28    (enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-29    (enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-30    (enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-31    (enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-32    (enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+For a total of 6 facts.
+CLIPS> (assert(enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar))
+<Fact-33>
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+f-28    (enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-29    (enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-30    (enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-31    (enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-32    (enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+f-33    (enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+For a total of 7 facts.
+CLIPS> (run)
+Enfermedad:asma
+Sintoma 1: dolorDePecho
+Sintoma 2: tos
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+Enfermedad:bronquitis
+Sintoma 1: tos
+Sintoma 2: mucosidad
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:cancer
+Sintoma 1: bultoEnCuerpo
+Sintoma 2: cambioEnPigmentacion
+Signo 1: debilidad
+Signo 2: fatiga
+
+Enfermedad:gripa
+Sintoma 1: dolorDeCabeza
+Sintoma 2: tos
+Signo 1: debilidad
+Signo 2: temperaturaElevada
+
+Enfermedad:alergia
+Sintoma 1: irritacion
+Sintoma 2: inflamacion
+Signo 1: enrojecimiento
+Signo 2: ojosVidriosos
+
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+For a total of 1 fact.
+CLIPS> (assert(asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar))
+<Fact-34>
+CLIPS> (assert(alergia irritacion inflamacion enrojecimiento ojosVidriosos))
+<Fact-35>
+CLIPS> (assert(gripa dolorDeCabeza tos debilidad temperaturaElevada))
+<Fact-36>
+CLIPS> (assert(cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga))
+<Fact-37>
+CLIPS> (assert(bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar))
+<Fact-38>
+CLIPS> (assert(infeccion dolor inflamacion temperaturaElevada enrojecimiento))
+<Fact-39>
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+f-34    (asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+f-35    (alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-36    (gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-37    (cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-38    (bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-39    (infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+For a total of 7 facts.
+CLIPS> (defrule asma(?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Asma" ?s1 ?s2 ?s3 ?s4 crlf))
+
+[PRNTUTIL2] Syntax Error:  Check appropriate syntax for the first field of a pattern.
+
+ERROR:
+(defrule MAIN::asma
+   (?s1
+CLIPS> (defrule asma(asma ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Asma" ?s1 ?s2 ?s3 ?s4 crlf))
+CLIPS> (rules)
+enfermedades
+eliminarEnfermedad
+asma
+For a total of 3 defrules.
+CLIPS> (undefrule asma)
+CLIPS> (rules)
+enfermedades
+eliminarEnfermedad
+For a total of 2 defrules.
+CLIPS> (defrule asma(asma ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Asma" crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (defrule alergia(alergia ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Alergia" crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (defrule gripa(gripa ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Gripa" crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (defrule cancer(cancer ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Cancer" crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (defrule bronquitis(bronquitis ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Bronquitis" crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (defrule infeccion(infeccion ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Infeccion" crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (rules)
+enfermedades
+eliminarEnfermedad
+asma
+alergia
+gripa
+cancer
+bronquitis
+infeccion
+For a total of 8 defrules.
+CLIPS> (run)
+Enfermedad: Infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+
+Enfermedad: Bronquitis
+Sintoma 1: tos
+Sintoma 2: mucosidad
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+
+Enfermedad: Cancer
+Sintoma 1: bultoEnCuerpo
+Sintoma 2: cambioEnPigmentacion
+Signo 1: debilidad
+Signo 2: fatiga
+
+
+Enfermedad: Gripa
+Sintoma 1: dolorDeCabeza
+Sintoma 2: tos
+Signo 1: debilidad
+Signo 2: temperaturaElevada
+
+
+Enfermedad: Alergia
+Sintoma 1: irritacion
+Sintoma 2: inflamacion
+Signo 1: enrojecimiento
+Signo 2: ojosVidriosos
+
+
+Enfermedad: Asma
+Sintoma 1: dolorDePecho
+Sintoma 2: tos
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+
+CLIPS> (defrule eliminarAsma ?f <- (asma ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+CLIPS> (defrule eliminarAlergia ?f <- (alergia ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+CLIPS> (defrule eliminarGripa ?f <- (gripa ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+CLIPS> (defrule eliminarCancer ?f <- (cancer ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+CLIPS> (defrule eliminarBronquitis ?f <- (bronquitis ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+CLIPS> (defrule eliminarInfeccion ?f <- (infeccion ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+
+
+CLIPS> (rules)
+enfermedades
+eliminarEnfermedad
+asma
+alergia
+gripa
+cancer
+bronquitis
+infeccion
+eliminarAsma
+eliminarAlergia
+eliminarGripa
+eliminarCancer
+eliminarBronquitis
+eliminarInfeccion
+For a total of 14 defrules.
+
+
+
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+f-34    (asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+f-35    (alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-36    (gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-37    (cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-38    (bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-39    (infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+For a total of 7 facts.
+
+
+CLIPS> (run)
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+For a total of 1 fact.
+CLIPS> 
