@@ -1,0 +1,498 @@
+
+AÑADIMOS LOS HECHOS DE ENFERMEDADES
+
+CLIPS> (assert(enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar))
+<Fact-15>
+CLIPS> (assert(enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos))
+<Fact-16>
+CLIPS> (assert(enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada))
+<Fact-17>
+CLIPS> (assert(enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga))
+<Fact-18>
+CLIPS> (assert(enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar))
+<Fact-19>
+CLIPS> (assert(enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento))
+<Fact-20>
+
+
+DEFINIMOS UNA REGA PARA LISTAR TODAS LAS ENFERMEDADES
+
+
+CLIPS> (defrule enfermedades2(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad:" ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf crlf))
+
+
+EJECUTAMOS NUESTRA REGLA PARA LISTAR TODAS LAS ENFERMEDADES
+
+
+CLIPS> (run)
+Enfermedad:piedras
+Sintoma 1: dolorVejiga
+Sintoma 2: dolorAlOrinar
+Signo 1: sangradoEnOrina
+Signo 2: fatiga
+
+Enfermedad:asma
+Sintoma 1: dolorDePecho
+Sintoma 2: tos
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:alergia
+Sintoma 1: irritacion
+Sintoma 2: inflamacion
+Signo 1: enrojecimiento
+Signo 2: ojosVidriosos
+
+Enfermedad:gripa
+Sintoma 1: dolorDeCabeza
+Sintoma 2: tos
+Signo 1: debilidad
+Signo 2: temperaturaElevada
+
+Enfermedad:cancer
+Sintoma 1: bultoEnCuerpo
+Sintoma 2: cambioEnPigmentacion
+Signo 1: debilidad
+Signo 2: fatiga
+
+Enfermedad:bronquitis
+Sintoma 1: tos
+Sintoma 2: mucosidad
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+
+
+DEFINIMOS UNA REGLA PARA ELIMINAR TODAS LAS ENFERMEDADES
+
+CLIPS> (defrule eliminarEnfermedad(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (retract *))
+
+LISTAMOS TODOS LOS HECHOS ENFERMEDADES Y NO ENFERMEDADES
+CLIPS> (facts)
+f-2     (person fred 32)
+f-3     (sintom a)
+f-4     (computer apple macbook 32000 32GB)
+f-5     (fail e)
+f-6     (fail f)
+f-7     (fail display)
+f-8     (asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+f-9     (alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-10    (gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-11    (cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-12    (bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-13    (infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+f-14    (enfermedad piedras dolorVejiga dolorAlOrinar sangradoEnOrina fatiga)
+f-15    (enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+f-16    (enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-17    (enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-18    (enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-19    (enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-20    (enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+For a total of 19 facts.
+
+
+EJECUTAMOS NUESTRA REGLA PARA ELIMINAR TODAS LAS ENFERMEDADES
+
+CLIPS> (run)
+
+LISTAMOS TODOS LOS HECHOS y NO HYA REGISTROS POR USAR EL *
+CLIPS> (facts)
+
+
+INSERTAMOS TODAS LAS ENFERMEDADES UNA VEZ MAS
+
+CLIPS> (assert(enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar))
+<Fact-21>
+CLIPS> (assert(enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos))
+<Fact-22>
+CLIPS> (assert(enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada))
+<Fact-23>
+CLIPS> (assert(enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga))
+<Fact-24>
+CLIPS> (assert(enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar))
+<Fact-25>
+CLIPS> (assert(enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento))
+<Fact-26>
+
+
+LISTAMOS TODOS LOS HECHOS 
+
+
+CLIPS> (facts)
+f-21    (enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+f-22    (enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-23    (enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-24    (enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-25    (enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-26    (enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+For a total of 6 facts.
+
+DEFINIMOS LA REGLA PARA LISTAR TODAS LAS ENFERMEDADES
+
+CLIPS> (defrule enfermedades0(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad:" ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf crlf))
+
+
+CORREMOS NUESTRA REGLA
+
+CLIPS> (run)
+
+
+SE LISTAN TODAS LAS ENFERMEDADES
+
+Enfermedad:asma
+Sintoma 1: dolorDePecho
+Sintoma 2: tos
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:alergia
+Sintoma 1: irritacion
+Sintoma 2: inflamacion
+Signo 1: enrojecimiento
+Signo 2: ojosVidriosos
+
+Enfermedad:gripa
+Sintoma 1: dolorDeCabeza
+Sintoma 2: tos
+Signo 1: debilidad
+Signo 2: temperaturaElevada
+
+Enfermedad:cancer
+Sintoma 1: bultoEnCuerpo
+Sintoma 2: cambioEnPigmentacion
+Signo 1: debilidad
+Signo 2: fatiga
+
+Enfermedad:bronquitis
+Sintoma 1: tos
+Sintoma 2: mucosidad
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+
+
+
+VALIDAMOS LA EXISTENCIA DE LAS REGLAS CREADAS
+
+CLIPS> (rules)
+r1
+r2
+fails
+prueba
+alergia
+alergia2
+alergia3
+enfermedades
+enfermedades1
+enfermedades2
+enfermedades3
+eliminarAsma
+eliminarEnfermedad
+enfermedades0
+enfermedades4
+eliminarEnfermedad2
+For a total of 16 defrules.
+
+
+BORRAMOS TODAS LAS REGLAS QUE EXISTEN PARA EVITAR PROBLEMAS CON LA AGENDA
+
+CLIPS> (undefrule *)
+
+
+VALIDAMOS QUE SE HAYA HECHO POR COMPLETO
+
+CLIPS> (rules)
+
+DEFINIMOS LA REGLA QUE LISTE TODAS LAS ENFERMEDADES
+
+CLIPS> (defrule enfermedades(enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad:" ?s crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf crlf))
+
+
+COMPROBAMOS QUE NUESTRA REGLA SE CREE CORRECTAMENTE
+
+CLIPS> (rules)
+enfermedades
+For a total of 1 defrule.
+
+DEFINIMOS UNA REGLA QUE ELIMINE SOLO A LAS ENFERMEDADES Y A NINGUN OTRO HECHO
+
+CLIPS> (defrule eliminarEnfermedad ?f <- (enfermedad ?s ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+CLIPS> (rules)
+enfermedades
+eliminarEnfermedad
+For a total of 2 defrules.
+
+INSERTAMOS NUEVAMENTE TODAS LAS ENFERMEDADES
+
+
+CLIPS> (assert(enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos))
+<Fact-28>
+CLIPS> (assert(enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada))
+<Fact-29>
+CLIPS> (assert(enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga))
+<Fact-30>
+CLIPS> (assert(enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar))
+<Fact-31>
+CLIPS> (assert(enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento))
+<Fact-32>
+
+
+VALIDAMOS CAULES SON LOS HECHOS EXISTENTES
+
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+f-28    (enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-29    (enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-30    (enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-31    (enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-32    (enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+For a total of 6 facts.
+CLIPS> (assert(enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar))
+<Fact-33>
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+f-28    (enfermedad alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-29    (enfermedad gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-30    (enfermedad cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-31    (enfermedad bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-32    (enfermedad infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+f-33    (enfermedad asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+For a total of 7 facts.
+
+CORREMOS AMBAS REGLAS, LA REGLA DE LISTADO DE ENFERMEDADES Y LA REGLA DE ELIMINADO
+CLIPS> (run)
+Enfermedad:asma
+Sintoma 1: dolorDePecho
+Sintoma 2: tos
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+Enfermedad:bronquitis
+Sintoma 1: tos
+Sintoma 2: mucosidad
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+Enfermedad:cancer
+Sintoma 1: bultoEnCuerpo
+Sintoma 2: cambioEnPigmentacion
+Signo 1: debilidad
+Signo 2: fatiga
+
+Enfermedad:gripa
+Sintoma 1: dolorDeCabeza
+Sintoma 2: tos
+Signo 1: debilidad
+Signo 2: temperaturaElevada
+
+Enfermedad:alergia
+Sintoma 1: irritacion
+Sintoma 2: inflamacion
+Signo 1: enrojecimiento
+Signo 2: ojosVidriosos
+
+
+PARA VALIDAR SU FUNCIONAMIENTO LISTAMOS TODOS LOS HECHOS
+
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+For a total of 1 fact.
+
+
+INSERTAMOS AHORA CADA UNO DE LOS HECHOS DE MANERA INDEPENDIENTES ENTRE SI, ES DECIR NO TODOS SON OBJETOS ENFERMEDAD
+
+CLIPS> (assert(asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar))
+<Fact-34>
+CLIPS> (assert(alergia irritacion inflamacion enrojecimiento ojosVidriosos))
+<Fact-35>
+CLIPS> (assert(gripa dolorDeCabeza tos debilidad temperaturaElevada))
+<Fact-36>
+CLIPS> (assert(cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga))
+<Fact-37>
+CLIPS> (assert(bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar))
+<Fact-38>
+CLIPS> (assert(infeccion dolor inflamacion temperaturaElevada enrojecimiento))
+<Fact-39>
+
+LISTAMOS LOS HECHOS
+
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+f-34    (asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+f-35    (alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-36    (gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-37    (cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-38    (bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-39    (infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+For a total of 7 facts.
+
+
+
+
+DEFINICION DE REGLAS PARA LISTAR CADA ENFERMEDAD
+
+CLIPS> (defrule asma(asma ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Asma" crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (defrule alergia(alergia ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Alergia" crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (defrule gripa(gripa ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Gripa" crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (defrule cancer(cancer ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Cancer" crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (defrule bronquitis(bronquitis ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Bronquitis" crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+CLIPS> (defrule infeccion(infeccion ?s1 ?s2 ?s3 ?s4) => (printout t "Enfermedad: Infeccion" crlf "Sintoma 1: " ?s1 crlf "Sintoma 2: " ?s2 crlf "Signo 1: " ?s3 crlf "Signo 2: " ?s4 crlf))
+
+
+
+COMPROBAMOS LAS REGLAS DE ENFERMEDADES QUE EXISTEN
+
+CLIPS> (rules)
+enfermedades
+eliminarEnfermedad
+asma
+alergia
+gripa
+cancer
+bronquitis
+infeccion
+For a total of 8 defrules.
+
+
+
+EJECUTAMOS NUESTRAS REGLAS
+
+CLIPS> (run)
+
+
+RESULTADOS DE NUESTARS REGLAS
+
+
+Enfermedad: Infeccion
+Sintoma 1: dolor
+Sintoma 2: inflamacion
+Signo 1: temperaturaElevada
+Signo 2: enrojecimiento
+
+
+Enfermedad: Bronquitis
+Sintoma 1: tos
+Sintoma 2: mucosidad
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+
+Enfermedad: Cancer
+Sintoma 1: bultoEnCuerpo
+Sintoma 2: cambioEnPigmentacion
+Signo 1: debilidad
+Signo 2: fatiga
+
+
+Enfermedad: Gripa
+Sintoma 1: dolorDeCabeza
+Sintoma 2: tos
+Signo 1: debilidad
+Signo 2: temperaturaElevada
+
+
+Enfermedad: Alergia
+Sintoma 1: irritacion
+Sintoma 2: inflamacion
+Signo 1: enrojecimiento
+Signo 2: ojosVidriosos
+
+
+Enfermedad: Asma
+Sintoma 1: dolorDePecho
+Sintoma 2: tos
+Signo 1: faltaDeAire
+Signo 2: sibilanciaAlExhalar
+
+
+
+DEFINICION DE REGLAS PARA ELIMINAR CADA ENFERMEDAD
+
+CLIPS> (defrule eliminarAsma ?f <- (asma ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+CLIPS> (defrule eliminarAlergia ?f <- (alergia ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+CLIPS> (defrule eliminarGripa ?f <- (gripa ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+CLIPS> (defrule eliminarCancer ?f <- (cancer ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+CLIPS> (defrule eliminarBronquitis ?f <- (bronquitis ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+CLIPS> (defrule eliminarInfeccion ?f <- (infeccion ?s1 ?s2 ?s3 ?s4) => (retract ?f))
+
+
+
+LISTAMOS LAS REGLAS EXISTENTES
+
+
+CLIPS> (rules)
+
+enfermedades
+eliminarEnfermedad
+asma
+alergia
+gripa
+cancer
+bronquitis
+infeccion
+eliminarAsma
+eliminarAlergia
+eliminarGripa
+eliminarCancer
+eliminarBronquitis
+eliminarInfeccion
+For a total of 14 defrules.
+
+
+LISTAMOS LOS HECHOS EXISTENTES
+
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+f-34    (asma dolorDePecho tos faltaDeAire sibilanciaAlExhalar)
+f-35    (alergia irritacion inflamacion enrojecimiento ojosVidriosos)
+f-36    (gripa dolorDeCabeza tos debilidad temperaturaElevada)
+f-37    (cancer bultoEnCuerpo cambioEnPigmentacion debilidad fatiga)
+f-38    (bronquitis tos mucosidad faltaDeAire sibilanciaAlExhalar)
+f-39    (infeccion dolor inflamacion temperaturaElevada enrojecimiento)
+For a total of 7 facts.
+
+EJECUTAMOS NUESTARS REGLAS PARA BORRAR ENFERMEDADES
+
+CLIPS> (run)
+
+LISTAMOS LOS HECHOS PARA COMPROBAR QUE HAYA SIDO UN BORRADO EXITOSO
+
+CLIPS> (facts)
+f-27    (comida chilaquiles)
+For a total of 1 fact.
+CLIPS> 
