@@ -1,0 +1,340 @@
+; Para ejecutar este archivo utilize lo siguiente
+; (load hands_on_4.clp)
+; (reset)
+; (run)
+
+;; TEMPLATES
+
+(deftemplate smartphone
+   (slot id)
+   (multislot marca)
+   (multislot modelo)
+   (multislot descripcion)
+   (slot precio))
+
+(deftemplate computadora
+   (slot id)
+   (multislot marca)
+   (multislot modelo)
+   (multislot descripcion)
+   (slot precio))
+
+(deftemplate accesorio
+   (slot id)
+   (multislot nombre)
+   (multislot descripcion)
+   (slot precio))
+
+(deftemplate cliente
+   (slot id)
+   (multislot nombre)
+   (slot email))
+
+(deftemplate orden
+   (slot tipo_producto)
+   (slot id_producto)
+   (slot id_cliente)
+   (slot cantidad)
+   (slot id_tarjeta)
+   (slot id_vale)
+   (slot total))
+
+(deftemplate tarjeta
+   (slot id)
+   (multislot banco)
+   (multislot grupo)
+   (slot expiracion))
+
+(deftemplate vale
+   (slot id)
+   (slot valor)
+   (slot caducidad))
+
+;; FACTS
+
+(deffacts smartphones
+   (smartphone (id 1) (marca "Apple") (modelo "iPhone 15") (descripcion "Smartphone de 6.1 pulgadas, cámara dual") (precio 800))
+   (smartphone (id 2) (marca "Samsung") (modelo "Note 12") (descripcion "Pantalla Infinity-O de 6.2 pulgadas") (precio 700))
+   (smartphone (id 3) (marca "Google") (modelo "Pixel 5") (descripcion "Teléfono inteligente con 5G") (precio 600))
+   (smartphone (id 4) (marca "Xiaomi") (modelo "Mi 11") (descripcion "Pantalla AMOLED, cámara de 108MP") (precio 650))
+   (smartphone (id 5) (marca "OnePlus") (modelo "9 Pro") (descripcion "Pantalla Fluid AMOLED de 120 Hz") (precio 900))
+   (smartphone (id 6) (marca "Sony") (modelo "Xperia 5") (descripcion "Compacto pero potente, con cámara profesional") (precio 750))
+   (smartphone (id 7) (marca "Huawei") (modelo "P40 Pro") (descripcion "Innovación en fotografía móvil") (precio 800))
+   (smartphone (id 8) (marca "Apple") (modelo "iPhone 15") (descripcion "Iphone 15 pirata") (precio 6650))
+   (smartphone (id 9) (marca "Motorola") (modelo "Edge 20") (descripcion "Diseño elegante y cámara de 108 MP") (precio 550))
+   (smartphone (id 10) (marca "LG") (modelo "Velvet") (descripcion "Pantalla P-OLED y diseño único") (precio 600)))
+
+(deffacts computadoras
+   (computadora (id 1) (marca "Apple") (modelo "MacBook Air") (descripcion "Laptop de 13 pulgadas con chip M1") (precio 1200))
+   (computadora (id 2) (marca "Dell") (modelo "XPS 13") (descripcion "Ultra portátil con pantalla InfinityEdge") (precio 1000))
+   (computadora (id 3) (marca "HP") (modelo "Spectre x360") (descripcion "Convertible 2 en 1 con pantalla táctil") (precio 1100))
+   (computadora (id 4) (marca "Asus") (modelo "ZenBook 13") (descripcion "Ultrabook ligero y compacto") (precio 950))
+   (computadora (id 5) (marca "Lenovo") (modelo "ThinkPad X1 Carbon") (descripcion "Durabilidad y seguridad empresarial") (precio 1300))
+   (computadora (id 6) (marca "Acer") (modelo "Swift 5") (descripcion "Ligera y potente con pantalla táctil") (precio 900))
+   (computadora (id 7) (marca "MSI") (modelo "GS66 Stealth") (descripcion "Gaming laptop con gráficos RTX 3080") (precio 2500))
+   (computadora (id 8) (marca "Alienware") (modelo "m15 R3") (descripcion "Alto rendimiento para juegos") (precio 2200))
+   (computadora (id 9) (marca "Microsoft") (modelo "Surface Laptop 4") (descripcion "Versatilidad y potencia con pantalla táctil") (precio 1500))
+   (computadora (id 10) (marca "Razer") (modelo "Blade 15") (descripcion "Laptop de juego ultracompacta") (precio 2300))
+   (computadora (id 11) (marca "MSI") (modelo "Black sol") (descripcion "Laptop de juego gamer") (precio 311)))
+
+(deffacts accesorios
+   (accesorio (id 1) (nombre "Teclado mecánico") (descripcion "Teclado retroiluminado con switches Cherry MX") (precio 150))
+   (accesorio (id 2) (nombre "Mouse inalámbrico") (descripcion "Mouse ergonómico con sensor de alta precisión") (precio 70))
+   (accesorio (id 3) (nombre "Monitor LED") (descripcion "Monitor de 24 pulgadas con resolución Full HD") (precio 180))
+   (accesorio (id 4) (nombre "Docking station") (descripcion "Estación de acoplamiento con múltiples puertos USB") (precio 100))
+   (accesorio (id 5) (nombre "Webcam HD") (descripcion "Cámara web con resolución de 1080p y micrófono integrado") (precio 90))
+   (accesorio (id 6) (nombre "Alfombrilla para mouse") (descripcion "Superficie optimizada para precisión") (precio 25))
+   (accesorio (id 7) (nombre "Cargador portátil") (descripcion "Batería externa de alta capacidad") (precio 50))
+   (accesorio (id 8) (nombre "Cable HDMI") (descripcion "Cable HDMI de alta velocidad, soporte 4K") (precio 20))
+   (accesorio (id 9) (nombre "Altavoces Bluetooth") (descripcion "Sonido de alta calidad, portátiles") (precio 110))
+   (accesorio (id 10) (nombre "Funda para laptop") (descripcion "Protección robusta y ligera para transporte") (precio 45)))
+
+(deffacts clientes
+   (cliente (id 1) (nombre "Juan Pérez") (email "juan.perez@example.com"))
+   (cliente (id 2) (nombre "Ana López") (email "ana.lopez@example.com"))
+   (cliente (id 3) (nombre "Carlos Gómez") (email "carlos.gomez@example.com"))
+   (cliente (id 4) (nombre "Luisa Martínez") (email "luisa.martinez@example.com"))
+   (cliente (id 5) (nombre "Sofía Hernández") (email "sofia.hernandez@example.com"))
+   (cliente (id 6) (nombre "Miguel Ángel Torres") (email "miguel.torres@example.com"))
+   (cliente (id 7) (nombre "Claudia Ramírez") (email "claudia.ramirez@example.com"))
+   (cliente (id 8) (nombre "Fernando Ruiz") (email "fernando.ruiz@example.com"))
+   (cliente (id 9) (nombre "Diana Morales") (email "diana.morales@example.com"))
+   (cliente (id 10) (nombre "Sergio Navarro") (email "sergio.navarro@example.com"))
+   (cliente (id 11) (nombre "Medegod Jiménez") (email "goditself@example.com"))
+   (cliente (id 12) (nombre "Roberto Lomelí") (email "roberto.lomeli@example.com"))
+   (cliente (id 13) (nombre "Rodrigo Lomelí") (email "rodrigo.lomeli@example.com")))
+
+
+(deffacts tarjetas
+   (tarjeta (id 1) (banco "Bancomer") (grupo "Visa") (expiracion "12/2025"))
+   (tarjeta (id 2) (banco "Banamex") (grupo "Visa") (expiracion "01/2024"))
+   (tarjeta (id 3) (banco "Santander") (grupo "Visa") (expiracion "03/2026"))
+   (tarjeta (id 4) (banco "Banorte") (grupo "MasterCard") (expiracion "07/2025"))
+   (tarjeta (id 5) (banco "HSBC") (grupo "Visa") (expiracion "09/2027"))
+   (tarjeta (id 6) (banco "Scotiabank") (grupo "MasterCard") (expiracion "10/2024"))
+   (tarjeta (id 7) (banco "Banamex") (grupo "Visa") (expiracion "02/2025"))
+   (tarjeta (id 8) (banco "Interacciones") (grupo "MasterCard") (expiracion "12/2026"))
+   (tarjeta (id 9) (banco "HSBC") (grupo "Visa") (expiracion "11/2023"))
+   (tarjeta (id 10) (banco "Liverpool") (grupo "Visa") (expiracion "05/2025"))
+   (tarjeta (id 11) (banco "BanBajío") (grupo "Visa") (expiracion "12/2025"))
+   (tarjeta (id 12) (banco "Banamex") (grupo "Visa") (expiracion "06/2028"))
+   (tarjeta (id 13) (banco "Scotiabank") (grupo "Visa") (expiracion "02/2025")))
+
+
+(deffacts vales
+   (vale (id 1) (valor 500) (caducidad "31/12/2024"))
+   (vale (id 2) (valor 200) (caducidad "30/06/2024"))
+   (vale (id 3) (valor 300) (caducidad "31/01/2025"))
+   (vale (id 4) (valor 450) (caducidad "28/02/2025"))
+   (vale (id 5) (valor 100) (caducidad "31/03/2025"))
+   (vale (id 6) (valor 600) (caducidad "30/04/2025"))
+   (vale (id 7) (valor 750) (caducidad "31/05/2025"))
+   (vale (id 8) (valor 250) (caducidad "30/09/2024"))
+   (vale (id 9) (valor 350) (caducidad "31/10/2024"))
+   (vale (id 10) (valor 400) (caducidad "30/11/2024"))
+   (vale (id 11) (valor 555) (caducidad "21/03/2028"))
+   (vale (id 12) (valor 150) (caducidad "03/02/2025"))
+   (vale (id 13) (valor 300) (caducidad "05/03/2026")))
+
+(deffacts ordenes
+   (orden (tipo_producto "smartphone") (id_producto 1) (id_cliente 1) (cantidad 1) (id_tarjeta 1) (id_vale 1) (total 800))
+   (orden (tipo_producto "computadora") (id_producto 1) (id_cliente 1) (cantidad 1) (id_tarjeta 1) (id_vale 1) (total 1000))
+   (orden (tipo_producto "accesorio") (id_producto 3) (id_cliente 3) (cantidad 2) (id_tarjeta 3) (id_vale 3) (total 360))
+   (orden (tipo_producto "smartphone") (id_producto 4) (id_cliente 4) (cantidad 1) (id_tarjeta 4) (id_vale 4) (total 650))
+   (orden (tipo_producto "smartphone") (id_producto 5) (id_cliente 5) (cantidad 1) (id_tarjeta 1) (id_vale 5) (total 1300))
+   (orden (tipo_producto "accesorio") (id_producto 6) (id_cliente 6) (cantidad 3) (id_tarjeta 6) (id_vale 6) (total 75))
+   (orden (tipo_producto "smartphone") (id_producto 2) (id_cliente 7) (cantidad 1) (id_tarjeta 10) (id_vale 7) (total 800))
+   (orden (tipo_producto "computadora") (id_producto 8) (id_cliente 8) (cantidad 1) (id_tarjeta 8) (id_vale 8) (total 2200))
+   (orden (tipo_producto "accesorio") (id_producto 9) (id_cliente 9) (cantidad 1) (id_tarjeta 9) (id_vale 9) (total 110))
+   (orden (tipo_producto "smartphone") (id_producto 8) (id_cliente 10) (cantidad 1) (id_tarjeta 7) (id_vale 10) (total 600))
+   (orden (tipo_producto "computadora") (id_producto 11) (id_cliente 11) (cantidad 1) (id_tarjeta 11) (id_vale 11) (total 6666))
+   (orden (tipo_producto "smartphone") (id_producto 3) (id_cliente 12) (cantidad 5) (id_tarjeta 12) (id_vale 12) (total 3000))
+   (orden (tipo_producto "smartphone") (id_producto 1) (id_cliente 13) (cantidad 8) (id_tarjeta 13) (id_vale 13) (total 6400)))
+
+;;Rules
+
+; Clientes que no han comprado
+(defrule cliente-sin-compras
+	(cliente (id ?id) (nombre ?nombre))
+	(not (orden (id_cliente ?id)))
+	=>
+	(printout t ?nombre " no ha comprado." crlf))
+	
+; Descuento del 25% en la próximo compra para clientes que no han comprado
+(defrule descuento-cliente-sin-compras
+	(cliente (id ?id) (nombre ?nombre))
+	(not (orden (id_cliente ?id)))
+	=>
+	(printout t ?nombre " tienes 25% de descuento en tu próxima compra." crlf))
+
+; Smartphones que han sido comprados
+(defrule smartphones-comprados
+	(orden (tipo_producto "smartphone") (id_producto ?producto))
+	(smartphone (id ?producto) (modelo ?modelo) (marca ?marca))
+	=>
+	(printout t "El smartphone " ?modelo " (" ?marca ") fue comprado." crlf))
+	
+; Computadoras que han sido compradas
+(defrule computadoras-comprados
+	(orden (tipo_producto "computadora") (id_producto ?producto))
+	(computadora (id ?producto) (modelo ?modelo) (marca ?marca))
+	=>
+	(printout t "La computadora " ?modelo " (" ?marca ") fue comprada." crlf))
+	
+; Accesorios que han sido comprados
+(defrule accesorios-comprados
+	(orden (tipo_producto "accesorio") (id_producto ?producto))
+	(accesorio (id ?producto) (nombre ?nombre))
+	=>
+	(printout t "El accesorio " ?nombre " fue comprado." crlf))
+	
+; Clientes comprando smartphones
+(defrule clientes-comprando-smartphones
+	(orden (tipo_producto "smartphone") (id_producto ?producto) (id_cliente ?cliente) (cantidad ?cantidad))
+	(smartphone (id ?producto) (modelo ?modelo) (marca ?marca))
+	(cliente (id ?cliente) (nombre ?nombre_cliente))
+	=>
+	(printout t ?nombre_cliente " compró x" ?cantidad " " ?modelo " (" ?marca ")." crlf))
+	
+; Clientes comprando computadoras
+(defrule clientes-comprando-computadoras
+	(orden (tipo_producto "computadora") (id_producto ?producto) (id_cliente ?cliente) (cantidad ?cantidad))
+	(computadora (id ?producto) (modelo ?modelo) (marca ?marca))
+	(cliente (id ?cliente) (nombre ?nombre_cliente))
+	=>
+	(printout t ?nombre_cliente " compró x" ?cantidad " " ?modelo " (" ?marca ")." crlf))
+
+; Clientes comprando accesorios
+(defrule clientes-comprando-accesorios
+	(orden (tipo_producto "accesorio") (id_producto ?producto) (id_cliente ?cliente) (cantidad ?cantidad))
+	(accesorio (id ?producto) (nombre ?nombre))
+	(cliente (id ?cliente) (nombre ?nombre_cliente))
+	=>
+	(printout t ?nombre_cliente " compró x" ?cantidad " " ?nombre "." crlf))
+	
+; Clientes usando tarjetas
+(defrule clientes-usando-tarjetas
+	(orden (id_cliente ?cliente) (id_tarjeta ?tarjeta))
+	(cliente (id ?cliente) (nombre ?nombre_cliente))
+	(tarjeta (id ?tarjeta) (banco ?banco) (grupo ?grupo))
+	=>
+	(printout t ?nombre_cliente " utilizó su tarjeta " ?banco " (" ?grupo ")." crlf))
+	
+; Clientes usando vales
+(defrule clientes-usando-vales
+	(orden (id_cliente ?cliente) (id_vale ?vale))
+	(cliente (id ?cliente) (nombre ?nombre_cliente))
+	(vale (id ?vale) (valor ?valor))
+	=>
+	(printout t ?nombre_cliente " utilizó un vale con valor de $" ?valor "." crlf))
+	
+; Clasificación de clientes (mayorista o menudista)
+(defrule clasificacion-clientes
+	(orden (id_cliente ?cliente) (cantidad ?cantidad))
+	(cliente (id ?cliente) (nombre ?nombre_cliente))
+	=>
+	(if (>= ?cantidad 5)
+		then
+		(printout t ?nombre_cliente " es mayorista." crlf)
+		else
+		(printout t ?nombre_cliente " es minurista." crlf)
+	))
+	
+; Oferta: 24 meses sin intereses al comprar un iPhone 15 con tarjeta Visa Banamex
+(defrule oferta-iPhone15-Banamex
+   (orden (tipo_producto "smartphone") (id_producto ?id) (id_cliente ?cliente) (id_tarjeta ?tarjeta))
+   (smartphone (id ?id) (marca "Apple") (modelo "iPhone 15"))
+   (tarjeta (id ?tarjeta) (banco "Banamex") (grupo "Visa"))
+   =>
+   (printout t "Oferta 1: 24 meses sin intereses con tarjeta Banamex Visa." crlf)
+)
+
+; Oferta: 12 meses sin intereses al comprar un Note 12 con tarjeta Visa Liverpool
+(defrule oferta-SamsungNote12-Liverpool
+   (orden (tipo_producto "smartphone") (id_producto ?id) (id_cliente ?cliente) (id_tarjeta ?tarjeta))
+   (smartphone (id ?id) (marca "Samsung") (modelo "Note 12"))
+   (tarjeta (id ?tarjeta) (banco "Liverpool") (grupo "Visa"))
+   =>
+   (printout t "Oferta 2: 12 meses sin intereses con tarjeta Liverpool Visa." crlf)
+)
+
+; Oferta: 15% de descuento en funta y micra al comprar un smartphone
+(defrule oferta-descuento-funda-mica
+   (orden (tipo_producto "smartphone") (id_producto ?id) (id_cliente ?cliente))
+   (smartphone (id ?id))
+   =>
+   (printout t "Oferta 3: 15% de descuento en funda y mica al comprar un Smartphone." crlf)
+)
+
+; Oferta: 10% de descuento en accesorios al comprar un smartphone de gama alta.
+(defrule oferta-descuento-accesorios-smartphone-gama-alta
+   (orden (tipo_producto "smartphone") (id_producto ?id) (id_cliente ?cliente))
+   (smartphone (id ?id) (precio ?precio&:(>= ?precio 800)))
+   =>
+   (printout t "Oferta 4: 10% de descuento en accesorios al comprar un smartphone de gama alta." crlf)
+)
+
+; Oferta: Envío gratuito en todas las compras superiores a $1000.
+(defrule oferta-envio-gratuito
+   (orden (total ?total&:(> ?total 1000)))
+   =>
+   (printout t "Oferta 5: Envío gratuito en todas las compras superiores a $1000." crlf)
+)
+
+; Oferta: 5% de descuento en la compra de cualquier producto utilizando una tarjeta HSBC.
+(defrule oferta-descuento-tarjeta-hsbc
+   (orden (id_tarjeta ?id_tarjeta))
+   (tarjeta (id ?id_tarjeta) (banco "HSBC"))
+   =>
+   (printout t "Oferta 6: 5% de descuento en la compra de cualquier producto utilizando una tarjeta HSBC." crlf)
+)
+
+; Oferta: Regalo de una webcam HD en la compra de una computadora MSI.
+(defrule oferta-regalo-webcam-msi
+   (orden (tipo_producto "computadora") (id_producto ?id) (id_cliente ?cliente))
+   (computadora (id ?id) (marca "MSI"))
+   =>
+   (printout t "Oferta 7: Regalo de una webcam HD en la compra de una computadora MSI." crlf)
+)
+
+; Oferta: Dobles puntos de recompensa en la compra de un OnePlus 9 Pro con tarjeta Bancomer.
+(defrule oferta-dobles-puntos-recompensa
+   (orden (tipo_producto "smartphone") (id_producto ?id) (id_cliente ?cliente) (id_tarjeta ?tarjeta))
+   (smartphone (id ?id) (marca "OnePlus") (modelo "9 Pro"))
+   (tarjeta (id ?tarjeta) (banco "Bancomer"))
+   =>
+   (printout t "Oferta 8: Dobles puntos de recompensa en la compra de un OnePlus 9 Pro con tarjeta Bancomer." crlf)
+)
+
+; Oferta: Cupón de descuento de $50 en la próxima compra al referir a un amigo que realice una compra.
+(defrule oferta-referir-amigo
+   (orden (id_cliente ?cliente))
+   (cliente (id ?cliente) (nombre ?nombre))
+   =>
+   (printout t "Oferta 9: Cupón de descuento de $50 en la próxima compra al referir a un amigo que realice una compra." crlf)
+)
+
+; Oferta: Oferta de $100 en vales por cada $1,000 de compra en producto "MacBook Air"
+(defrule oferta-vales-compra-macbook-air
+   (orden (tipo_producto "computadora") (id_producto ?id1) (id_cliente ?cliente) (total ?total))
+   (computadora (id ?id1) (marca "Apple") (modelo "MacBook Air"))
+   =>
+   (bind ?vales (/ ?total 1000))
+   (bind ?valor (* 100 ?vales))
+   (if (> ?valor 0)
+		then
+		(printout t "Oferta 10: Vale de $" ?valor " por comprar MacBook Air." crlf))
+)
+
+; Oferta: Oferta de $100 en vales por cada $1,000 de compra en producto "iPhone 15"
+(defrule oferta-vales-compra-iphone-15
+   (orden (tipo_producto "smartphone") (id_producto ?id1) (id_cliente ?cliente) (total ?total))
+   (smartphone (id ?id1) (marca "Apple") (modelo "iPhone 15"))
+   =>
+   (bind ?vales (/ ?total 1000))
+   (bind ?vales (integer ?vales))
+   (bind ?valor (* 100 ?vales))
+   (if (> ?valor 0)
+		then
+		(printout t "Oferta 11: Vale de $" ?valor " por comprar iPhone 15." crlf))
+)
